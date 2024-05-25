@@ -12,8 +12,31 @@
             align-items: center;
             height: 100vh;
             background-color: #000;
-            color: #0ff;
+            overflow: hidden;
             font-family: 'Arial', sans-serif;
+        }
+        .stars {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: -1;
+            background: transparent;
+        }
+        .star {
+            width: 2px;
+            height: 2px;
+            background: #0ff;
+            position: absolute;
+            border-radius: 50%;
+            box-shadow: 0 0 5px #0ff;
+        }
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
         }
         .container {
             text-align: center;
@@ -23,6 +46,7 @@
             font-size: 3em;
             letter-spacing: 2px;
             text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+            color: #0ff;
         }
         @keyframes pulse {
             0%, 100% {
@@ -35,8 +59,24 @@
     </style>
 </head>
 <body>
+    <div class="stars"></div>
     <div class="container">
         <h1>COMING SOON...</h1>
     </div>
+
+    <script>
+        const starContainer = document.querySelector('.stars');
+        const numStars = 100;
+
+        for (let i = 0; i < numStars; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const [x, y] = [Math.random() * 100, Math.random() * 100];
+            star.style.top = `${y}vh`;
+            star.style.left = `${x}vw`;
+            star.style.animation = `twinkle ${Math.random() * 3 + 2}s infinite`;
+            starContainer.appendChild(star);
+        }
+    </script>
 </body>
 </html>
