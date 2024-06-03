@@ -29,6 +29,7 @@
             position: absolute;
             border-radius: 50%;
             box-shadow: 0 0 5px #0ff;
+            transition: transform 2s;
         }
         @keyframes twinkle {
             0%, 100% {
@@ -77,6 +78,16 @@
             star.style.animation = `twinkle ${Math.random() * 3 + 2}s infinite`;
             starContainer.appendChild(star);
         }
+
+        function moveStars() {
+            const stars = document.querySelectorAll('.star');
+            stars.forEach(star => {
+                const [x, y] = [Math.random() * 100, Math.random() * 100];
+                star.style.transform = `translate(${x}vw, ${y}vh)`;
+            });
+        }
+
+        setInterval(moveStars, 4000);
     </script>
 </body>
 </html>
